@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HADAF</title>
+    <link rel="icon" type="image/png" href="LOGO.png">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e1f5fe 100%), radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: auto, 30px 30px;
+            color: #333;
+            line-height: 1.6;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            animation: fadeInUp 1s ease-out;
+        }
+        header {
+            background: linear-gradient(135deg, #0077b6 0%, #00a8e8 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ff6b35;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&h=600&fit=crop') center/cover no-repeat;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 119, 182, 0.7);
+            z-index: 1;
+        }
+        .hero > * {
+            position: relative;
+            z-index: 2;
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #90e0ef 0%, #b3e5fc 100%);
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 0 10px #0077b6, 0 0 20px #0077b6, 0 0 30px #0077b6, 0 0 40px #0077b6;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #0077b6, 0 0 20px #0077b6, 0 0 30px #0077b6, 0 0 40px #0077b6;
+            }
+            to {
+                text-shadow: 0 0 20px #ff6b35, 0 0 40px #ff6b35, 0 0 60px #ff6b35, 0 0 80px #ff6b35;
+            }
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.2);
+            transform-style: preserve-3d;
+        }
+        .btn:hover {
+            transform: translateY(-5px) rotateX(5deg);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.4), 0 6px 12px rgba(0,0,0,0.3);
+        }
+        .btn.secondary {
+            background: linear-gradient(135deg, #0077b6 0%, #00a8e8 100%);
+        }
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .about {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .about h2 {
+            text-align: center;
+            color: #0077b6;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        .about p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .about-item {
+            text-align: center;
+            background: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        .about-item:hover {
+            transform: translateY(-5px) rotateY(5deg);
+        }
+        .about-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .about-item h3 {
+            margin: 15px 0 10px;
+            color: #0077b6;
+            font-size: 1.5rem;
+        }
+        .about-item p {
+            padding: 0 15px 15px;
+            margin: 0;
+            font-size: 1rem;
+            text-align: justify;
+        }
+        .testimonials {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .testimonials h2 {
+            color: #0077b6;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .testimonial:hover {
+            transform: translateY(-5px);
+        }
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .testimonial cite {
+            font-weight: 700;
+            color: #0077b6;
+        }
+        .services {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .services h2 {
+            text-align: center;
+            color: #0077b6;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .service {
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .service:hover {
+            transform: translateY(-5px);
+        }
+        .service i {
+            font-size: 3rem;
+            color: #ff6b35;
+            margin-bottom: 15px;
+        }
+        .contact {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .contact h2 {
+            color: #0077b6;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        .contact form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .contact input, .contact textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        footer {
+            background: linear-gradient(135deg, #0077b6 0%, #00a8e8 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+        .social-icons {
+            margin-bottom: 20px;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 2rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #ff6b35;
+        }
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="LOGO.png" alt="HADAF Logo" class="logo">
+            <h1>HADAF</h1>
+        </div>
+        <nav>
+            <a href="#about">من نحن</a>
+            <a href="#services">خدماتنا</a>
+            <a href="#contact">اتصل بنا</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="about">
+        <h1>مرحبًا بك في HADAF</h1>
+        <p>وكالة متخصصة في مساعدة الطلاب المغاربة على تحقيق أحلامهم التعليمية في الصين. نقدم خدمات شاملة تشمل القبول الجامعي، استخراج التأشيرات، والدعم الكامل طوال رحلتك الدراسية.</p>
+        <div class="hero-buttons">
+            <a href="https://www.instagram.com/hadaf.ma_?igsh=MWtpNTBjeXA1MnBrOQ==" class="btn">اكتشف المزيد</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdWCQdepMUj7eo9uKLJbPpE2rnoXrNysb1-05Z89FAWhsnkUA/viewform?usp=dialog" class="btn secondary">سجل الآن</a>
+        </div>
+    </section>
+
+    <section class="about fade-in">
+        <h2>عن HADAF</h2>
+        <p>HADAF هي وكالة متخصصة في مساعدة الطلاب المغاربة على تحقيق أحلامهم التعليمية في الصين. نحن نقدم خدمات شاملة تشمل القبول في الجامعات، استخراج التأشيرات، التوجيه الأكاديمي، والدعم الكامل طوال فترة الدراسة.</p>
+        <p>فريقنا من الخبراء يعمل بجد لضمان أن تكون رحلتك التعليمية في الصين ناجحة وممتعة.</p>
+        <div class="about-grid">
+            <div class="about-item fade-in">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop" alt="الحياة الجامعية">
+                <h3>الحياة الجامعية</h3>
+                <p>العمل الجماعي هو أساس النجاح الأكاديمي. في الجامعة، نتعلم كيف نشارك الأفكار ونبني مشاريع مشتركة تعكس روح التعاون.</p>
+            </div>
+            <div class="about-item fade-in">
+                <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop" alt="بيئة العمل">
+                <h3>بيئة العمل</h3>
+                <p>نجاح أي مؤسسة يبدأ من فريق عمل متعاون، حيث تتحول الأفكار إلى إنجازات من خلال التخطيط والعمل المشترك.</p>
+            </div>
+            <div class="about-item fade-in">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop" alt="التعليم والثقافة">
+                <h3>التعليم والثقافة</h3>
+                <p>التعليم هو المفتاح لفهم العالم. كل كتاب نقرأه يفتح لنا نافذة جديدة نحو المعرفة.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="services fade-in" id="services">
+        <h2>خدماتنا</h2>
+        <div class="services-grid">
+            <div class="service fade-in">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>القبول الجامعي</h3>
+                <p>مساعدة في اختيار الجامعات المناسبة وإجراءات القبول في الصين.</p>
+            </div>
+            <div class="service fade-in">
+                <i class="fas fa-passport"></i>
+                <h3>استخراج التأشيرات</h3>
+                <p>دعم كامل في استخراج تأشيرة الدراسة للصين بسهولة وسرعة.</p>
+            </div>
+            <div class="service fade-in">
+                <i class="fas fa-home"></i>
+                <h3>السكن والإقامة</h3>
+                <p>ترتيب السكن المناسب في الحرم الجامعي أو خارجها.</p>
+            </div>
+            <div class="service fade-in">
+                <i class="fas fa-language"></i>
+                <h3>دورات اللغة الصينية</h3>
+                <p>برامج تعليمية لتعلم اللغة الصينية قبل السفر.</p>
+            </div>
+            <div class="service fade-in">
+                <i class="fas fa-compass"></i>
+                <h3>التوجيه والدعم</h3>
+                <p>دعم مستمر أثناء الدراسة في الصين، بما في ذلك الاستشارات الأكاديمية.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials fade-in">
+        <h2>آراء العملاء</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial fade-in">
+                <p>"شكرًا لـ HADAF على مساعدتهم في تحقيق حلمي بالدراسة في الصين. الخدمة ممتازة والدعم كامل."</p>
+                <cite>- أحمد، طالب في بكين</cite>
+            </div>
+            <div class="testimonial fade-in">
+                <p>"فريق HADAF ساعدني في كل خطوة، من القبول إلى التأشيرة. أوصي بهم بشدة."</p>
+                <cite>- فاطمة، طالبة في شنغهاي</cite>
+            </div>
+            <div class="testimonial fade-in">
+                <p>"تجربة رائعة مع HADAF. جعلوا رحلتي التعليمية سهلة وممتعة."</p>
+                <cite>- محمد، طالب في قوانغتشو</cite>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact fade-in" id="contact">
+        <h2>اتصل بنا</h2>
+        <p class="text-3d">تواصل معنا عبر إنستغرام: <a href="https://www.instagram.com/hadaf.ma_?igsh=MWtpNTBjeXA1MnBrOQ==" target="_blank">hadaf.ma_</a></p>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>© 2025 HADAF | جميع الحقوق محفوظة</p>
+    </footer>
+</body>
+</html>
